@@ -27,6 +27,21 @@ async function fetchLesson() {
   }
   currentLesson = await res.json();
   render(currentLesson);
+  recordLastLesson();
+}
+
+async function recordLastLesson() {
+  const token = getToken();
+  if (!token) return;
+  try {
+    await fetch(`${API}/user/last-lesson`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+      body: JSON.stringify({ lessonNumber: Number(lessonNumber) })
+    });
+  } catch (err) {
+    console.error('Failed to record last lesson:', err.message);
+  }
 }
 
 function render(lesson) {
@@ -49,7 +64,7 @@ function render(lesson) {
     ${quizBlock(lesson)}
     ${summaryBlock(lesson)}
     ${nextLessonBlock(lesson)}
-    <a href="index.html" class="btn secondary" style="display:inline-block;margin:16px 0;text-decoration:none">← Back to lessons</a>
+    <a href="dashboard.html" class="btn secondary" style="display:inline-block;margin:16px 0;text-decoration:none">← Back to lessons</a>
   `;
 
   attachPracticeHandlers(lesson);
