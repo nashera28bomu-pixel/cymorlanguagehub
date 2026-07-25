@@ -425,3 +425,24 @@ textarea.code-editor {
   background: linear-gradient(90deg, var(--accent), var(--success));
   transition: width 0.3s ease;
 }
+
+/* ============ INLINE CODE HIGHLIGHTING (in prose text) ============ */
+code.inline-code {
+  background: rgba(55, 118, 171, 0.18);
+  color: #79c0ff;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+span.inline-string {
+  color: #ffd43b;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+span.inline-comment {
+  color: var(--muted);
+  font-style: italic;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
