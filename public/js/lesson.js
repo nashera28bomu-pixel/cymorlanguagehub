@@ -19,6 +19,19 @@ function esc(str) {
   return div.innerHTML;
 }
 
+// Escapes text, then wraps code-ish patterns (function calls, quoted strings)
+// in styled spans so key terms stand out inside prose paragraphs.
+function highlightInline(str) {
+  if (!str) return '';
+  let out = esc(str);
+  // quoted strings "like this" (double quotes only - single quotes are ambiguous with contractions like "don't")
+  // must run BEFORE function-call highlighting, otherwise it matches the quotes inside the class="..." attribute that gets injected next
+  out = out.replace(/("[^"]*?")/g, '<span class="inline-string">$1</span>');
+  // function calls like print(), input(), len(), type()
+  out = out.replace(/\b([a-zA-Z_][a-zA-Z0-9_]*\(\))/g, '<code class="inline-code">$1</code>');
+  return out;
+}
+
 async function fetchLesson() {
   const res = await fetch(`${API}/lessons/${lessonNumber}`);
   if (!res.ok) {
@@ -49,7 +62,7 @@ function render(lesson) {
 
   container.innerHTML = `
     ${headerBlock(lesson)}
-    ${lesson.introduction ? section('Introduction', `<p style="white-space:pre-line">${esc(lesson.introduction)}</p>`) : ''}
+    ${lesson.introduction ? section('Introduction', `<p style="white-space:pre-line">${highlightInline(lesson.introduction)}</p>`) : ''}
     ${objectivesBlock(lesson)}
     ${whyLearnBlock(lesson)}
     ${realWorldBlock(lesson)}
@@ -90,34 +103,34 @@ function headerBlock(lesson) {
 
 function objectivesBlock(lesson) {
   if (!lesson.learningObjectives || lesson.learningObjectives.length === 0) return '';
-  const items = lesson.learningObjectives.map(o => `<li>${esc(o)}</li>`).join('');
+  const items = lesson.learningObjectives.map(o => `<li>${highlightInline(o)}</li>`).join('');
   return section('🎯 Learning Objectives', `<ul style="padding-left:20px">${items}</ul>`);
 }
 
 function whyLearnBlock(lesson) {
   if (!lesson.whyLearn || !lesson.whyLearn.content) return '';
-  const items = lesson.whyLearn.content.map(c => `<li>${esc(c)}</li>`).join('');
+  const items = lesson.whyLearn.content.map(c => `<li>${highlightInline(c)}</li>`).join('');
   return section(esc(lesson.whyLearn.title || 'Why Learn This?'), `<ul style="padding-left:20px">${items}</ul>`);
 }
 
 function realWorldBlock(lesson) {
   if (!lesson.realWorldApplications || lesson.realWorldApplications.length === 0) return '';
   const items = lesson.realWorldApplications.map(a =>
-    `<div style="margin-bottom:10px"><strong>${esc(a.title)}</strong><p style="color:var(--muted);font-size:0.9rem">${esc(a.description)}</p></div>`
+    `<div style="margin-bottom:10px"><strong>${esc(a.title)}</strong><p style="color:var(--muted);font-size:0.9rem">${highlightInline(a.description)}</p></div>`
   ).join('');
   return section('🌍 Real-World Applications', items);
 }
 
 function didYouKnowBlock(lesson) {
   if (!lesson.didYouKnow || !lesson.didYouKnow.facts) return '';
-  const items = lesson.didYouKnow.facts.map(f => `<li>${esc(f)}</li>`).join('');
+  const items = lesson.didYouKnow.facts.map(f => `<li>${highlightInline(f)}</li>`).join('');
   return section(esc(lesson.didYouKnow.title || 'Did You Know?'), `<ul style="padding-left:20px">${items}</ul>`, 'checkpoint');
 }
 
 function theoryBlock(lesson) {
   if (!lesson.theory || !lesson.theory.sections || lesson.theory.sections.length === 0) return '';
   const items = lesson.theory.sections.map(s =>
-    `<div style="margin-bottom:16px"><h4 style="margin-bottom:6px">${esc(s.heading)}</h4><p style="white-space:pre-line;font-size:0.95rem">${esc(s.content)}</p></div>`
+    `<div style="margin-bottom:16px"><h4 style="margin-bottom:6px;color:var(--accent2)">${esc(s.heading)}</h4><p style="white-space:pre-line;font-size:0.95rem">${highlightInline(s.content)}</p></div>`
   ).join('');
   return section('📖 Theory', items);
 }
@@ -128,7 +141,7 @@ function examplesBlock(lesson) {
     <div style="margin-bottom:16px">
       ${ex.title ? `<div style="font-size:0.85rem;color:var(--muted);margin-bottom:4px">${esc(ex.title)}</div>` : ''}
       <pre>${esc(ex.code)}</pre>
-      ${ex.explanation ? `<p style="font-size:0.85rem;color:var(--muted);margin:6px 0">${esc(ex.explanation)}</p>` : ''}
+      ${ex.explanation ? `<p style="font-size:0.85rem;color:var(--muted);margin:6px 0">${highlightInline(ex.explanation)}</p>` : ''}
       <div style="font-size:0.8rem;color:var(--muted)">Output:</div>
       <pre>${esc(ex.output)}</pre>
     </div>`).join('');
@@ -141,7 +154,7 @@ function stepByStepBlock(lesson) {
     `<div style="display:flex;gap:10px;margin-bottom:8px;font-size:0.9rem">
       <span style="color:var(--accent2)">${i + 1}.</span>
       <div><code style="background:#010409;padding:2px 6px;border-radius:4px">${esc(s.line)}</code>
-      <p style="color:var(--muted);margin-top:2px">${esc(s.explanation)}</p></div>
+      <p style="color:var(--muted);margin-top:2px">${highlightInline(s.explanation)}</p></div>
     </div>`).join('');
   return section('🔍 Step-by-Step Execution', items);
 }
@@ -151,7 +164,7 @@ function commonMistakesBlock(lesson) {
   const items = lesson.commonMistakes.map(m => `
     <div style="margin-bottom:12px;padding:10px;border-radius:8px;background:rgba(248,81,73,0.08);border:1px solid rgba(248,81,73,0.3)">
       <div style="color:var(--error)"><code>${esc(m.mistake)}</code></div>
-      <p style="font-size:0.85rem;color:var(--muted);margin:4px 0">${esc(m.why)}</p>
+      <p style="font-size:0.85rem;color:var(--muted);margin:4px 0">${highlightInline(m.why)}</p>
       <div style="color:var(--success)">✓ <code>${esc(m.fix)}</code></div>
     </div>`).join('');
   return section('⚠️ Common Mistakes', items);
@@ -162,9 +175,9 @@ function debuggingChallengeBlock(lesson) {
   if (!dc) return '';
   return section(`🐛 ${esc(dc.title || 'Debugging Challenge')}`, `
     <pre>${esc(dc.brokenCode)}</pre>
-    <p style="margin:10px 0"><strong>${esc(dc.question)}</strong></p>
+    <p style="margin:10px 0"><strong>${highlightInline(dc.question)}</strong></p>
     <details><summary style="cursor:pointer;color:var(--accent2)">Show solution</summary>
-      <p style="margin-top:8px;font-size:0.9rem">${esc(dc.solution)}</p>
+      <p style="margin-top:8px;font-size:0.9rem">${highlightInline(dc.solution)}</p>
     </details>`);
 }
 
@@ -176,7 +189,7 @@ function practiceBlock(lesson) {
         <strong>Exercise ${ex.id}</strong>
         <span style="font-size:0.75rem;color:var(--muted)">${esc(ex.difficulty)}</span>
       </div>
-      <p style="margin-bottom:10px">${esc(ex.prompt)}</p>
+      <p style="margin-bottom:10px">${highlightInline(ex.prompt)}</p>
       <textarea id="codeEditor-${ex.id}" class="code-editor" spellcheck="false">${esc(ex.starterCode || '')}</textarea>
       <div style="display:flex;gap:8px;margin-top:10px">
         <button class="run-btn" data-id="${ex.id}">▶ Run Code</button>
@@ -200,7 +213,7 @@ function practiceBlock(lesson) {
 function miniChallengeBlock(lesson) {
   const mc = lesson.miniChallenge;
   if (!mc) return '';
-  return section(`🏆 ${esc(mc.title || 'Mini Challenge')}`, `<p>${esc(mc.description)}</p>`, 'checkpoint');
+  return section(`🏆 ${esc(mc.title || 'Mini Challenge')}`, `<p>${highlightInline(mc.description)}</p>`, 'checkpoint');
 }
 
 function quizBlock(lesson) {
@@ -209,9 +222,9 @@ function quizBlock(lesson) {
 
 function summaryBlock(lesson) {
   if (!lesson.summary && (!lesson.keyTakeaways || lesson.keyTakeaways.length === 0)) return '';
-  const takeaways = (lesson.keyTakeaways || []).map(t => `<li>${esc(t)}</li>`).join('');
+  const takeaways = (lesson.keyTakeaways || []).map(t => `<li>${highlightInline(t)}</li>`).join('');
   return section('✅ Summary', `
-    ${lesson.summary ? `<p style="white-space:pre-line;margin-bottom:12px">${esc(lesson.summary)}</p>` : ''}
+    ${lesson.summary ? `<p style="white-space:pre-line;margin-bottom:12px">${highlightInline(lesson.summary)}</p>` : ''}
     ${takeaways ? `<strong>Key Takeaways</strong><ul style="padding-left:20px;margin-top:6px">${takeaways}</ul>` : ''}
   `);
 }
@@ -284,7 +297,7 @@ async function runExercise(exercise, btn) {
     outputEl.textContent = actual || '(no output)';
 
     const expected = (exercise.expectedOutput || '').trim();
-    const passed = actual === expected;
+    const passed = checkExerciseOutput(actual, expected, exercise.validationType || 'exact_output');
 
     if (passed) {
       outputEl.className = 'output-ok';
@@ -305,6 +318,20 @@ async function runExercise(exercise, btn) {
     btn.disabled = false;
     btn.textContent = '▶ Run Code';
   }
+}
+
+function checkExerciseOutput(actual, expected, validationType) {
+  if (validationType === 'non_empty') {
+    // For personal-answer exercises (name, favourite food, etc.) - any real output passes.
+    return actual.length > 0;
+  }
+  if (validationType === 'contains') {
+    const expectedLines = expected.split('\n').map(l => l.trim());
+    const actualLines = actual.split('\n').map(l => l.trim());
+    return expectedLines.every(line => actualLines.includes(line));
+  }
+  // exact_output (default)
+  return actual === expected;
 }
 
 function checkLessonProgress() {
