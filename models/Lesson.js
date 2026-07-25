@@ -43,7 +43,11 @@ const PracticeExerciseSchema = new mongoose.Schema({
   difficulty: { type: String, enum: ['Easy', 'Medium', 'Hard'], default: 'Easy' },
   prompt: { type: String, required: true },
   starterCode: { type: String, default: '' },
-  expectedOutput: { type: String, required: true }
+  expectedOutput: { type: String, required: true },
+  // exact_output: output must match expectedOutput exactly (default)
+  // non_empty: any non-empty output passes (use for personal-answer exercises like "print your name")
+  // contains: expectedOutput is treated as a required substring/line, not a full match
+  validationType: { type: String, enum: ['exact_output', 'non_empty', 'contains'], default: 'exact_output' }
 }, { _id: false });
 
 const MiniChallengeSchema = new mongoose.Schema({
