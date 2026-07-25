@@ -152,28 +152,32 @@
       "difficulty": "Easy",
       "prompt": "Print your full name.",
       "starterCode": "",
-      "expectedOutput": "John Doe"
+      "expectedOutput": "Any name, e.g. John Doe",
+      "validationType": "non_empty"
     },
     {
       "id": 2,
       "difficulty": "Easy",
       "prompt": "Print your favourite food.",
       "starterCode": "",
-      "expectedOutput": "Pilau"
+      "expectedOutput": "Any food, e.g. Pilau",
+      "validationType": "non_empty"
     },
     {
       "id": 3,
       "difficulty": "Medium",
       "prompt": "Print three different messages, each on its own line.",
       "starterCode": "",
-      "expectedOutput": "Line 1\nLine 2\nLine 3"
+      "expectedOutput": "Line 1\nLine 2\nLine 3",
+      "validationType": "exact_output"
     },
     {
       "id": 4,
       "difficulty": "Medium",
       "prompt": "Write a program that welcomes a new Python learner.",
       "starterCode": "",
-      "expectedOutput": "Welcome to Python!"
+      "expectedOutput": "Welcome to Python!",
+      "validationType": "exact_output"
     }
   ],
   "miniChallenge": {
