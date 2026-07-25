@@ -1,0 +1,259 @@
+{
+  "lessonNumber": 1,
+  "module": 1,
+  "moduleTitle": "Foundations",
+  "title": "What is Python & Running Your First Script",
+  "slug": "what-is-python-and-first-script",
+  "estimatedTime": "30-45 minutes",
+  "difficulty": "Beginner",
+  "isCheckpoint": false,
+  "learningObjectives": [
+    "Understand what Python is.",
+    "Know where Python is used in the real world.",
+    "Write your first Python program.",
+    "Understand the print() function.",
+    "Differentiate between comments and executable code.",
+    "Run a simple Python script successfully."
+  ],
+  "prerequisites": [],
+  "introduction": "Welcome to your Python journey! 🎉\n\nEvery website, mobile app, game, banking system, artificial intelligence model and automation tool is built using programming languages. Python is one of the most popular programming languages in the world because it is easy to learn, powerful and incredibly versatile.\n\nIn this lesson, you will write your very first Python program. Don't worry if you've never programmed before. By the end of this lesson, you'll understand how Python executes instructions and you'll be able to display messages on the screen using the print() function.",
+  "whyLearn": {
+    "title": "Why Learn Python?",
+    "content": [
+      "Python has a simple and readable syntax, making it beginner-friendly.",
+      "It is used in Artificial Intelligence (AI) and Machine Learning.",
+      "Python powers websites and APIs using frameworks like Django and FastAPI.",
+      "It is widely used for cybersecurity and ethical hacking.",
+      "Python automates repetitive tasks.",
+      "Scientists use Python for research and data analysis.",
+      "Game developers use Python to build games and prototypes.",
+      "Many of the world's biggest companies rely on Python."
+    ]
+  },
+  "realWorldApplications": [
+    {
+      "title": "Artificial Intelligence",
+      "description": "AI assistants and intelligent applications are commonly built using Python."
+    },
+    {
+      "title": "Web Development",
+      "description": "Python is used to build websites, REST APIs and backend systems."
+    },
+    {
+      "title": "Automation",
+      "description": "Python can automatically rename files, send emails and generate reports."
+    },
+    {
+      "title": "Data Science",
+      "description": "Businesses analyse millions of records using Python."
+    },
+    {
+      "title": "Cyber Security",
+      "description": "Security professionals use Python for penetration testing and security automation."
+    }
+  ],
+  "didYouKnow": {
+    "title": "Did You Know?",
+    "facts": [
+      "Python was created by Guido van Rossum and first released in 1991.",
+      "Python is named after the comedy group 'Monty Python', not the snake.",
+      "Python consistently ranks among the world's most popular programming languages.",
+      "Companies like Google, Netflix, Instagram, Spotify and NASA use Python."
+    ]
+  },
+  "theory": {
+    "sections": [
+      {
+        "heading": "What is a Programming Language?",
+        "content": "A programming language is a way humans communicate instructions to computers. Just like people use English or Swahili to communicate with each other, programmers use languages like Python to communicate with computers.\n\nComputers cannot understand normal human language directly. Instead, they understand instructions written using programming languages."
+      },
+      {
+        "heading": "What is Python?",
+        "content": "Python is a high-level programming language designed to be simple and easy to read. Instead of using complicated symbols everywhere, Python looks almost like plain English.\n\nOne reason Python is loved by beginners is because you can focus on solving problems rather than worrying about difficult syntax."
+      },
+      {
+        "heading": "How Python Executes Code",
+        "content": "Python executes your program from the first line to the last line.\n\nIt reads one instruction, performs it, then moves to the next instruction.\n\nThink of Python as someone carefully following a recipe. It never skips steps unless you tell it to."
+      },
+      {
+        "heading": "The print() Function",
+        "content": "The print() function displays information on the screen.\n\nAnything inside the parentheses will appear in the output.\n\nThis is the most commonly used function when learning Python because it helps you see what your program is doing."
+      },
+      {
+        "heading": "Strings",
+        "content": "A string is simply text.\n\nStrings must always be surrounded by quotation marks.\n\nPython accepts either double quotes or single quotes."
+      },
+      {
+        "heading": "Comments",
+        "content": "Comments begin with the # symbol.\n\nPython ignores comments completely.\n\nComments are used to explain code for humans reading it later."
+      }
+    ]
+  },
+  "examples": [
+    {
+      "title": "Printing Text",
+      "code": "print(\"Hello, World!\")",
+      "explanation": "Python displays exactly what is inside the quotation marks.",
+      "output": "Hello, World!"
+    },
+    {
+      "title": "Multiple print() Statements",
+      "code": "print(\"Welcome\")\nprint(\"to\")\nprint(\"Python\")",
+      "explanation": "Each print() statement displays its own line.",
+      "output": "Welcome\nto\nPython"
+    },
+    {
+      "title": "Using Comments",
+      "code": "# This is a comment\nprint(\"Learning Python\")",
+      "explanation": "Python ignores the comment and only executes the print() statement.",
+      "output": "Learning Python"
+    }
+  ],
+  "stepByStepExecution": [
+    {
+      "line": "print(\"Hello\")",
+      "explanation": "Python encounters the print() function."
+    },
+    {
+      "line": "\"Hello\"",
+      "explanation": "Python recognises this as a string."
+    },
+    {
+      "line": "Display output",
+      "explanation": "Python prints Hello on the screen."
+    }
+  ],
+  "commonMistakes": [
+    {
+      "mistake": "print(Hello)",
+      "why": "Hello is not inside quotation marks.",
+      "fix": "print(\"Hello\")"
+    },
+    {
+      "mistake": "Print(\"Hello\")",
+      "why": "Python is case-sensitive. 'Print' is different from 'print'.",
+      "fix": "print(\"Hello\")"
+    },
+    {
+      "mistake": "print(\"Hello'",
+      "why": "Opening and closing quotation marks must match.",
+      "fix": "print(\"Hello\")"
+    }
+  ],
+  "debuggingChallenge": {
+    "title": "Fix the Code",
+    "brokenCode": "Print(\"Welcome\")",
+    "question": "Why doesn't this program work?",
+    "solution": "Replace Print with print because Python is case-sensitive."
+  },
+  "practiceExercises": [
+    {
+      "id": 1,
+      "difficulty": "Easy",
+      "prompt": "Print your full name.",
+      "starterCode": "",
+      "expectedOutput": "John Doe"
+    },
+    {
+      "id": 2,
+      "difficulty": "Easy",
+      "prompt": "Print your favourite food.",
+      "starterCode": "",
+      "expectedOutput": "Pilau"
+    },
+    {
+      "id": 3,
+      "difficulty": "Medium",
+      "prompt": "Print three different messages, each on its own line.",
+      "starterCode": "",
+      "expectedOutput": "Line 1\nLine 2\nLine 3"
+    },
+    {
+      "id": 4,
+      "difficulty": "Medium",
+      "prompt": "Write a program that welcomes a new Python learner.",
+      "starterCode": "",
+      "expectedOutput": "Welcome to Python!"
+    }
+  ],
+  "miniChallenge": {
+    "title": "Your First Program",
+    "description": "Create a short program that prints your name, your country and a motivational quote using three separate print() statements."
+  },
+  "hints": [
+    "Remember to put text inside quotation marks.",
+    "Use one print() statement for each line.",
+    "Python reads your program from top to bottom.",
+    "Comments begin with the # symbol."
+  ],
+  "quiz": [
+    {
+      "question": "Who created Python?",
+      "options": [
+        "Bill Gates",
+        "Guido van Rossum",
+        "James Gosling",
+        "Linus Torvalds"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Python was created by Guido van Rossum."
+    },
+    {
+      "question": "Which function displays text on the screen?",
+      "options": [
+        "echo()",
+        "display()",
+        "print()",
+        "show()"
+      ],
+      "correctAnswer": 2,
+      "explanation": "The print() function displays output."
+    },
+    {
+      "question": "What symbol starts a comment?",
+      "options": [
+        "//",
+        "#",
+        "--",
+        "/*"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Comments start with the # symbol."
+    },
+    {
+      "question": "Which of these is a valid Python statement?",
+      "options": [
+        "print(Hello)",
+        "Print(\"Hello\")",
+        "print(\"Hello\")",
+        "echo(\"Hello\")"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Strings must be inside quotes and the function name is print()."
+    },
+    {
+      "question": "How does Python execute code?",
+      "options": [
+        "Bottom to top",
+        "Randomly",
+        "Top to bottom",
+        "Right to left"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Python executes code sequentially from the first line to the last."
+    }
+  ],
+  "summary": "Excellent work! 🎉 You have completed your very first Python lesson.\n\nYou learned what Python is, why it is popular, where it is used, how Python executes code, how to use the print() function, how strings work and how comments help explain code.\n\nMost importantly, you've written your first Python program. Every experienced Python developer started with a simple print() statement just like you.",
+  "keyTakeaways": [
+    "Python is beginner-friendly.",
+    "Python executes code from top to bottom.",
+    "print() displays output.",
+    "Strings must be enclosed in quotation marks.",
+    "Comments begin with # and are ignored by Python."
+  ],
+  "nextLesson": {
+    "lessonNumber": 2,
+    "title": "Variables & Data Types",
+    "preview": "Next, you'll learn how computers remember information using variables and explore Python's four fundamental data types."
+  }
+}
