@@ -7,33 +7,121 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header>
-  <div class="logo">🐍 Cymor <span>Python</span> Learner</div>
-  <div id="userBox"></div>
-</header>
 
-<div class="container">
-
-  <div id="authCard" class="card hidden">
-    <h3 id="authTitle">Log in</h3>
-    <div id="registerFields" class="hidden">
-      <input id="nameInput" placeholder="Full name">
+<!-- LOADING SCREEN -->
+<div id="loadingScreen">
+  <div class="loading-inner">
+    <div class="loading-logo">🐍 <span>Cymor</span> Python Learner</div>
+    <pre id="loadingLines" class="loading-lines"></pre>
+    <div class="loading-bar-track">
+      <div id="loadingBarFill" class="loading-bar-fill"></div>
     </div>
-    <input id="emailInput" placeholder="Email" type="email">
-    <input id="passwordInput" placeholder="Password" type="password">
-    <button id="authSubmit" style="width:100%">Log in</button>
-    <p style="margin-top:10px; font-size:0.85rem; color:var(--muted)">
-      <span id="authSwitchText">No account?</span>
-      <a href="#" id="authSwitchLink" style="color:var(--accent2)">Register</a>
-    </p>
+    <div id="loadingPercent" class="loading-percent">0%</div>
   </div>
+</div>
 
-  <div id="lessonListWrap" class="hidden">
-    <div id="lessonList"></div>
-  </div>
+<!-- SITE CONTENT (hidden until loading finishes) -->
+<div id="siteContent" class="hidden">
+
+  <header class="site-header">
+    <div class="logo">🐍 Cymor <span>Python</span></div>
+    <nav>
+      <button id="navStart" class="btn small">Start Learning</button>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Cymor <span class="accent">Python</span> Learner</h1>
+    <p class="hero-tagline">Learn Python from zero — real theory, real practice, running live in your browser. No PC required.</p>
+    <div class="hero-actions">
+      <button id="heroStartBtn" class="btn primary">▶ Start Learning</button>
+      <button id="heroFeaturesBtn" class="btn secondary">View Features</button>
+    </div>
+  </section>
+
+  <!-- SAMPLE CODE IN ACTION -->
+  <section class="section">
+    <h2 class="section-title">See It In Action</h2>
+    <p class="section-sub">Every lesson comes with a live Python engine running right in your browser.</p>
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="terminal-title">practice.py</span>
+      </div>
+      <pre class="terminal-body"><code id="demoCode"></code><span id="demoCursor" class="cursor">▌</span></pre>
+      <div class="terminal-output-label">Output</div>
+      <pre id="demoOutput" class="terminal-output"></pre>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="featuresSection">
+    <h2 class="section-title">Features</h2>
+    <div class="grid">
+      <div class="feature-card">
+        <div class="feature-icon">🐍</div>
+        <h3>Real Python, In-Browser</h3>
+        <p>Powered by Pyodide — a full Python engine that runs your code instantly, no installs, no PC needed.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <h3>Real Theory, Not Fluff</h3>
+        <p>Every lesson explains the "why," not just the "how" — plain-English breakdowns of every concept.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧪</div>
+        <h3>Hands-On Practice Points</h3>
+        <p>Write and run real code for every lesson, with instant feedback against expected output.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📝</div>
+        <h3>Quizzes That Stick</h3>
+        <p>Short, focused quizzes after every lesson reinforce what you just learned.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Progress That's Remembered</h3>
+        <p>Your dashboard always picks up exactly where you left off — no lost progress.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Built Mobile-First</h3>
+        <p>Designed to work beautifully on a phone screen — because that's how real learning happens.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="section alt">
+    <h2 class="section-title">Why Choose Us</h2>
+    <ul class="why-list">
+      <li><strong>Zero setup.</strong> No downloads, no installs, no local Python interpreter — open a browser and start coding.</li>
+      <li><strong>Built for beginners.</strong> Every concept is explained from first principles, with common mistakes called out before you make them.</li>
+      <li><strong>Learn by doing.</strong> Every single lesson has a live coding exercise, not just reading.</li>
+      <li><strong>Made in Kenya, built for everyone.</strong> Crafted with the realities of mobile-first, low-bandwidth learning in mind.</li>
+    </ul>
+  </section>
+
+  <!-- FOUNDER -->
+  <section class="section founder-section">
+    <h2 class="section-title">Founder</h2>
+    <div class="founder-card">
+      <div class="founder-avatar">👑</div>
+      <div>
+        <h3>Legendary Smiley Cymor</h3>
+        <p class="founder-role">Founder, Cymor Tech Services</p>
+        <p class="founder-bio">Building software and digital tools for the Kenyan market and beyond — entirely from a mobile phone. Cymor Python Learner is part of a growing suite of tools designed to make technology and technical education more accessible.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>© 2026 Cymor Tech Services. All rights reserved.</p>
+  </footer>
 
 </div>
 
-<script src="js/app.js"></script>
+<script src="js/landing.js"></script>
 </body>
 </html>
