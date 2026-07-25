@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cymor Python Learner</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div class="logo">🐍 Cymor <span>Python</span> Learner</div>
+  <div id="userBox"></div>
+</header>
+
+<div class="container">
+
+  <div id="authCard" class="card hidden">
+    <h3 id="authTitle">Log in</h3>
+    <div id="registerFields" class="hidden">
+      <input id="nameInput" placeholder="Full name">
+    </div>
+    <input id="emailInput" placeholder="Email" type="email">
+    <input id="passwordInput" placeholder="Password" type="password">
+    <button id="authSubmit" style="width:100%">Log in</button>
+    <p style="margin-top:10px; font-size:0.85rem; color:var(--muted)">
+      <span id="authSwitchText">No account?</span>
+      <a href="#" id="authSwitchLink" style="color:var(--accent2)">Register</a>
+    </p>
+  </div>
+
+  <div id="lessonListWrap" class="hidden">
+    <div id="lessonList"></div>
+  </div>
+
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
